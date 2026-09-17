@@ -1,0 +1,63 @@
+---
+title: "Simple document"
+author: "Yijia Wang"
+output: 
+  html_document:
+    toc: true
+    toc_float: true #可以滚动
+#pdf_document（不能有滚动栏）
+---
+
+I'm an R Markdown document! 
+
+# Section 1
+
+Here's a **code chunk** that samples from 
+a _normal distribution_:
+
+```{r}
+samp = rnorm(100)
+length(samp)
+```
+
+# Section 2
+
+I can take the mean of the sample, too!
+The mean is `r mean(samp)`.
+
+# section 5
+
+This plot shows the distribution of the $X$ （LaTeX 数学格式）
+
+```{r}
+library(tidyverse)
+set.seed(0)
+samp1=tibble(
+  num_var=rnorm(n=500,mean=1),
+  log_var=num_var>0, #either True or False
+  abs_var=abs(num_var),
+  
+)
+
+ggplot(samp1,aes(x=abs_var))+geom_histogram()
+```
+
+The median is `r round(median(pull(samp1,num_var)),2)`.
+
+```{r}
+round(median(pull(samp1,num_var)),2)
+```
+
+# section 6
+
+# 1st Level Header
+## 2nd Level Header
+**bold**  or  __bold__
+*italic* or _italic_
+`code`
+superscript^2^ and subscript~2~
+
+
+# section 7: learning assessment 3
+
+* The median is `r round(median(pull(samp1,num_var)),2)`.
